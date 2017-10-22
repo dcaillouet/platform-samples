@@ -42,13 +42,6 @@ while read oldrev newrev refname; do
         echo "Please make the following change \"git config --global core.autocrlf input\"."
         exit 1
       fi
-
-      #case $FILE in
-      #*.zip|*.gz|*.tgz )
-      #  echo "Hello there! We have restricted committing that filetype. Please see Dave in IT to discuss alternatives."
-      #  exit 1
-      #  ;;
-      #esac
     done
   done
 done
