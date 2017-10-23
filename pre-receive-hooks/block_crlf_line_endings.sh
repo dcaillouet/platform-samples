@@ -37,11 +37,14 @@ while read oldrev newrev refname; do
   do
     for FILE  in `git log -1 --name-only --pretty=format:'' $COMMIT`;
     do
-      if [grep -IUq "^M" FILE]; then
-        echo "Hello there! You have probably tried to commit a file with CRLF line endings accidentally. The repository should only have LF (Unix Style) line endings."
-        echo "Please make the following change \"git config --global core.autocrlf input\"."
-        exit 1
-      fi
+      case $FILE in
+      !*.bat )
+        if [grep -IUq "^M" $FILE]; then
+          echo "Hello there! You have probably tried to commit a file with CRLF line endings accidentally. The repository should only have LF (Unix Style) line endings."
+          echo "Please make the following change \"git config --global core.autocrlf input\"."
+          exit 1
+        fi
+      esac
     done
   done
 done
